@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- SEO Optimization -->
-<meta name="description" content="Interactive Virtual Physics Lab: Explore Frank-Hertz and Photoelectric Effect Experiments with simulations.">
-<meta name="keywords" content="virtual physics lab, frank hertz experiment, photoelectric effect, quantum physics simulation, online lab">
-<meta name="author" content="Dr. P. Selvarengan">
-<meta name="robots" content="index, follow">
-
-<!-- Social sharing (Open Graph) -->
-<meta property="og:title" content="Virtual Physics Laboratory - Quantum Experiments Online">
-<meta property="og:description" content="Perform virtual Frank-Hertz and Photoelectric Effect experiments. Learn quantum physics interactively.">
-<meta property="og:image" content="https://pselvarengan.github.io/selvarenganparanthaman.github.io//thumbnail.jpg">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://pselvarengan.github.io/selvarenganparanthaman.github.io/">
-
-<link rel="canonical" href="https://pselvarengan.github.io/selvarenganparanthaman.github.io/">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Physics Lab</title>
+    
+    <!-- SEO Optimization -->
+    <meta name="description" content="Interactive Virtual Physics Lab: Explore Frank-Hertz and Photoelectric Effect Experiments with simulations.">
+    <meta name="keywords" content="virtual physics lab, frank hertz experiment, photoelectric effect, quantum physics simulation, online lab">
+    <meta name="author" content="Dr. P. Selvarengan">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pselvarengan.github.io/selvarenganparanthaman.github.io/">
+
+    <!-- Social sharing (Open Graph) -->
+    <meta property="og:title" content="Virtual Physics Laboratory - Quantum Experiments Online">
+    <meta property="og:description" content="Perform virtual Frank-Hertz and Photoelectric Effect experiments. Learn quantum physics interactively.">
+    <meta property="og:image" content="https://pselvarengan.github.io/selvarenganparanthaman.github.io//thumbnail.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pselvarengan.github.io/selvarenganparanthaman.github.io/">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
@@ -53,6 +53,45 @@
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
+        }
+        
+        footer {
+            background: #1a2530;
+            color: #ddd;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: #9bd4ff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .attribution {
+            font-size: 0.8rem;
+            margin-top: 15px;
+            color: #aaa;
+        }
+        
+        .license-info {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .license-info a {
+            color: #9bd4ff;
         }
         
         .tab-container {
@@ -242,7 +281,12 @@
         <header>
             <h1>Virtual Physics Laboratory</h1>
             <p>Frank-Hertz Experiment & Photoelectric Effect Simulation</p>
-	</header>
+        </header>
+        
+        <!-- License Information Banner -->
+        <div class="license-info">
+            <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+        </div>
         
         <div class="tab-container">
             <div class="tab active" data-tab="frank-hertz">Frank-Hertz Experiment</div>
@@ -452,9 +496,128 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Virtual Physics Laboratory | Developed by Dr. P. Selvarengan</p>
+            <p>
+                <a href="#about" onclick="showPolicy('about')">About</a> |
+                <a href="#privacy" onclick="showPolicy('privacy')">Privacy Policy</a> |
+                <a href="#disclaimer" onclick="showPolicy('disclaimer')">Disclaimer</a> |
+                <a href="#license" onclick="showPolicy('license')">License</a> |
+                <a href="#contact" onclick="showPolicy('contact')">Contact</a>
+            </p>
+            <p>This website is for educational purposes only.</p>
+            <div class="attribution">
+                <p>Uses <a href="https://www.chartjs.org/" target="_blank">Chart.js</a> (MIT License) for data visualization</p>
+            </div>
+        </footer>
+        
+        <!-- Policy Modal -->
+        <div id="policy-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 8px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
+                <div id="policy-content"></div>
+                <button onclick="closePolicy()" style="margin-top: 20px; padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Close</button>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Policy content
+        const policies = {
+            about: `
+                <h2>About Virtual Physics Laboratory</h2>
+                <p>The Virtual Physics Laboratory is an educational platform developed by Dr. P. Selvarengan to provide interactive simulations of fundamental physics experiments.</p>
+                <p>Our mission is to make quantum physics concepts accessible through hands-on virtual experiments that demonstrate key principles like energy quantization and the particle nature of light.</p>
+                <p>This platform is designed for students, educators, and physics enthusiasts to explore complex concepts in a safe, interactive environment.</p>
+            `,
+            privacy: `
+                <h2>Privacy Policy</h2>
+                <p><strong>Last Updated:</strong> January 2025</p>
+                
+                <h3>Information We Collect</h3>
+                <p>This website does not collect any personal information. All simulation data is processed locally in your browser and is not transmitted to our servers.</p>
+                
+                <h3>Third-Party Services</h3>
+                <p>We use Chart.js for data visualization, which is loaded from a public CDN. No tracking or personal data is collected by this library.</p>
+                
+                <h3>Cookies</h3>
+                <p>This website does not use cookies for tracking purposes.</p>
+                
+                <h3>Data Security</h3>
+                <p>Since no personal data is collected or stored, there are no data security concerns regarding user information.</p>
+                
+                <h3>Contact</h3>
+                <p>If you have any questions about this privacy policy, please contact us through the contact section.</p>
+            `,
+            disclaimer: `
+                <h2>Disclaimer</h2>
+                <p><strong>Educational Use Only</strong></p>
+                <p>The Virtual Physics Laboratory is provided for educational and demonstration purposes only. While we strive for accuracy in our simulations, the results should not be used for scientific research or commercial applications.</p>
+                
+                <p><strong>No Warranty</strong></p>
+                <p>This service is provided "as is" without any warranties, expressed or implied. We make no guarantees regarding the accuracy, reliability, or completeness of the simulation results.</p>
+                
+                <p><strong>Limitation of Liability</strong></p>
+                <p>In no event shall the developers be liable for any damages arising from the use or inability to use this virtual laboratory.</p>
+                
+                <p><strong>External Links</strong></p>
+                <p>This website may contain links to external websites. We are not responsible for the content or privacy practices of these external sites.</p>
+            `,
+            license: `
+                <h2>License Information</h2>
+                <p><strong>Content License</strong></p>
+                <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+                
+                <p><strong>You are free to:</strong></p>
+                <ul>
+                    <li><strong>Share</strong> — copy and redistribute the material in any medium or format</li>
+                    <li><strong>Adapt</strong> — remix, transform, and build upon the material</li>
+                </ul>
+                
+                <p><strong>Under the following terms:</strong></p>
+                <ul>
+                    <li><strong>Attribution</strong> — You must give appropriate credit, provide a link to the license, and indicate if changes were made.</li>
+                    <li><strong>NonCommercial</strong> — You may not use the material for commercial purposes.</li>
+                    <li><strong>ShareAlike</strong> — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+                </ul>
+                
+                <p><strong>Third-Party Licenses</strong></p>
+                <p>This project uses Chart.js, which is licensed under the <a href="https://github.com/chartjs/Chart.js/blob/master/LICENSE.md" target="_blank">MIT License</a>.</p>
+            `,
+            contact: `
+                <h2>Contact Information</h2>
+                <p><strong>Developer:</strong> Dr. P. Selvarengan</p>
+                <p><strong>Purpose:</strong> Educational Physics Simulations</p>
+                
+                <p>For questions, suggestions, or reporting issues with the Virtual Physics Laboratory, please contact:</p>
+                
+                <p><strong>Email:</strong> [Your contact email]</p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/pselvarengan" target="_blank">github.com/pselvarengan</a></p>
+                
+                <p>We welcome feedback from educators and students to improve our virtual laboratory experience.</p>
+                
+                <p><strong>Response Time:</strong> We strive to respond to all inquiries within 3-5 business days.</p>
+            `
+        };
+
+        // Policy modal functions
+        function showPolicy(type) {
+            document.getElementById('policy-content').innerHTML = policies[type];
+            document.getElementById('policy-modal').style.display = 'block';
+        }
+
+        function closePolicy() {
+            document.getElementById('policy-modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('policy-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePolicy();
+            }
+        });
+
         // Tab functionality
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
