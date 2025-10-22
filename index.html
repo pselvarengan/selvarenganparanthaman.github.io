@@ -268,6 +268,34 @@
             justify-content: space-between;
             align-items: center;
         }
+
+        /* Cookie Consent Styles */
+        #cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        
+        #cookie-consent button {
+            margin-left: 10px;
+            padding: 5px 15px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        #cookie-consent button:hover {
+            background: #2980b9;
+        }
         
         @media (max-width: 768px) {
             .experiment-container {
@@ -277,6 +305,12 @@
     </style>
 </head>
 <body>
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" style="display: none;">
+        This website uses essential cookies for functionality. 
+        <button onclick="acceptCookies()">Accept</button>
+    </div>
+
     <div class="container">
         <header>
             <h1>Virtual Physics Laboratory</h1>
@@ -503,6 +537,7 @@
             <p>
                 <a href="#about" onclick="showPolicy('about')">About</a> |
                 <a href="#privacy" onclick="showPolicy('privacy')">Privacy Policy</a> |
+                <a href="#terms" onclick="showPolicy('terms')">Terms of Service</a> |
                 <a href="#disclaimer" onclick="showPolicy('disclaimer')">Disclaimer</a> |
                 <a href="#license" onclick="showPolicy('license')">License</a> |
                 <a href="#contact" onclick="showPolicy('contact')">Contact</a>
@@ -523,7 +558,24 @@
     </div>
 
     <script>
-        // Policy content
+        // Cookie Consent Functions
+        function showCookieConsent() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookie-consent').style.display = 'block';
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-consent').style.display = 'none';
+        }
+
+        // Show cookie consent on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showCookieConsent();
+        });
+
+        // Enhanced Policy content
         const policies = {
             about: `
                 <h2>About Virtual Physics Laboratory</h2>
@@ -536,19 +588,55 @@
                 <p><strong>Last Updated:</strong> January 2025</p>
                 
                 <h3>Information We Collect</h3>
-                <p>This website does not collect any personal information. All simulation data is processed locally in your browser and is not transmitted to our servers.</p>
+                <p><strong>No Personal Data:</strong> We do not collect any personal identification information.</p>
+                <p><strong>Simulation Data:</strong> All experiment data is processed locally in your browser and is not stored on our servers.</p>
+                <p><strong>Automated Information:</strong> Our web hosting provider may collect standard server logs including IP address, browser type, and access times for security and maintenance purposes.</p>
+                
+                <h3>Cookies and Local Storage</h3>
+                <p>We use local storage to remember your cookie preferences and maintain your experiment settings during your session. No tracking cookies are used.</p>
                 
                 <h3>Third-Party Services</h3>
-                <p>We use Chart.js for data visualization, which is loaded from a public CDN. No tracking or personal data is collected by this library.</p>
+                <p>We use Chart.js loaded from a public CDN (jsdelivr.net) for data visualization. This service may collect standard CDN usage statistics.</p>
                 
-                <h3>Cookies</h3>
-                <p>This website does not use cookies for tracking purposes.</p>
+                <h3>Data Retention</h3>
+                <p>Since we do not collect personal data, there is no data retention period. Session data is cleared when you close your browser.</p>
                 
-                <h3>Data Security</h3>
-                <p>Since no personal data is collected or stored, there are no data security concerns regarding user information.</p>
+                <h3>Your Rights</h3>
+                <p>You have the right to access, correct, or delete any personal information we might hold. Contact us using the information below.</p>
+                
+                <h3>Changes to This Policy</h3>
+                <p>We may update this privacy policy. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
                 
                 <h3>Contact</h3>
-                <p>If you have any questions about this privacy policy, please contact us through the contact section.</p>
+                <p>For privacy concerns: pselvarengan@gmail.com</p>
+            `,
+            terms: `
+                <h2>Terms of Service</h2>
+                <p><strong>Last Updated:</strong> January 2025</p>
+                
+                <h3>Acceptance of Terms</h3>
+                <p>By accessing and using this website, you accept and agree to be bound by these Terms of Service.</p>
+                
+                <h3>Educational Use</h3>
+                <p>This service is provided for educational purposes only. The simulations are designed for learning and demonstration and should not be used for scientific research or commercial applications.</p>
+                
+                <h3>Intellectual Property</h3>
+                <p>All content on this website is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License unless otherwise noted.</p>
+                
+                <h3>User Conduct</h3>
+                <p>You agree not to misuse this service or attempt to disrupt its operation. Any unauthorized use may result in termination of access.</p>
+                
+                <h3>Disclaimer of Warranties</h3>
+                <p>This service is provided "as is" without any warranties of any kind. We do not guarantee the accuracy, reliability, or completeness of the simulation results.</p>
+                
+                <h3>Limitation of Liability</h3>
+                <p>In no event shall the developers be liable for any direct, indirect, incidental, or consequential damages arising from the use of this service.</p>
+                
+                <h3>Governing Law</h3>
+                <p>These terms shall be governed by and construed in accordance with applicable international laws.</p>
+                
+                <h3>Contact</h3>
+                <p>For questions about these terms: pselvarengan@gmail.com</p>
             `,
             disclaimer: `
                 <h2>Disclaimer</h2>
@@ -592,7 +680,7 @@
                 
                 <p>For questions, suggestions, or reporting issues with the Virtual Physics Laboratory, please contact:</p>
                 
-                <p><strong>Email:</strong> [Your contact email]</p>
+                <p><strong>Email:</strong> pselvarengan@gmail.com</p>
                 <p><strong>GitHub:</strong> <a href="https://github.com/pselvarengan" target="_blank">github.com/pselvarengan</a></p>
                 
                 <p>We welcome feedback from educators and students to improve our virtual laboratory experience.</p>
